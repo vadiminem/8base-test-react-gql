@@ -65,7 +65,7 @@ const createCacheConfig = () => ({
       fields: {
         commentsList: getListQueryTypePolicy(),
         postsList: getListQueryTypePolicy(),
-        tagsList: getListQueryTypePolicy()
+        tagsList: getListQueryTypePolicy(),
       },
     },
   },
