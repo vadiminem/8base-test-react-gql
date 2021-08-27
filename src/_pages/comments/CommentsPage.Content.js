@@ -21,41 +21,44 @@ const ItemContainer = ({ children, ...props }) => {
   );
 };
 
-export const CommentsPageContent = ({ commentsList = [], totalCount = 0, onEndReached }) => {
-  const hasMore = commentsList.length < totalCount;
+export const CommentsPageContent =
+  ({
+     commentsList = [],
+     totalCount = 0,
+     styles = {},
+     onEndReached,
+   }) => {
+    const hasMore = commentsList.length < totalCount;
 
-  return (
-    <Virtuoso
-      style={{ height: '100%', flexGrow: 1 }}
-      data={commentsList}
-      totalCount={totalCount}
-      endReached={onEndReached}
-      components={{
-        List: ListContainer,
-        Item: ItemContainer,
-        Footer: () => {
-          return hasMore ? (
-            <Box
-              component="li"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              padding={2}
-            >
-              <CircularProgress />
-            </Box>
-          ) : null;
-        },
-      }}
-      itemContent={(index, comment) => (
-        <ListItemText
-          primary={comment.content}
-          secondary={new Date(comment.createdAt).toLocaleString()}
-          primaryTypographyProps={{
-            noWrap: true,
-          }}
-        />
-      )}
-    />
-  );
-};
+    return (
+      <Virtuoso
+        style={{ height: '100%', flexGrow: 1, ...styles }}
+        data={commentsList}
+        totalCount={totalCount}
+        endReached={onEndReached}
+        components={{
+          List: ListContainer,
+          Item: ItemContainer,
+          Footer: () => {
+            return hasMore ? (
+              <Box
+                component='li'
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+                padding={2}
+              >
+                <CircularProgress />
+              </Box>
+            ) : null;
+          },
+        }}
+        itemContent={(index, comment) => (
+          <ListItemText
+            primary={comment.content}
+            secondary={new Date(comment.createdAt).toLocaleString()}
+          />
+        )}
+      />
+    );
+  };
