@@ -5,8 +5,7 @@ import { commentsSelector } from '_layers/dataSelectors';
 import { useCommentsList } from '_layers/gql/hooks';
 import { BottomNavigation } from '_layers/ui/components';
 import { CenterLayout, PageLayout } from '_layers/ui/layouts';
-
-import { CommentsPageContent } from './CommentsPage.Content';
+import { CommentsPageContent } from '_pages/shared';
 
 export const CommentsPage = () => {
   const { data, loading, fetchMore } = useCommentsList({

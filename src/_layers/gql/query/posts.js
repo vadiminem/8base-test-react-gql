@@ -2,15 +2,7 @@ import { gql } from '@apollo/client';
 
 export const POSTS_LIST_QUERY = gql`
   query PostsList($first: Int, $skip: Int, $tags: [String!]) {
-    postsList(first: $first, skip: $skip, filter: {
-    tags:{
-      some:{
-        name: {
-          in: $tags
-        }
-      }
-    }
-  }) {
+    postsList(first: $first, skip: $skip, filter: { tags: { some: { name: { in: $tags } } } }) {
       count
       items {
         id

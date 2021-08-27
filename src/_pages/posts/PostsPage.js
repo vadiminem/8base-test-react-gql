@@ -7,10 +7,8 @@ import { BottomNavigation } from '_layers/ui/components';
 import { CenterLayout, PageLayout } from '_layers/ui/layouts';
 
 import { PostsPageContent } from './PostsPage.Content';
-import { useState } from 'react';
 
 export const PostsPage = () => {
-  const [checked, setChecked] = useState([]);
   const { data, loading, fetchMore, refetch } = usePostsList({
     variables: {
       first: LOAD_LIST_ITEMS,
@@ -29,8 +27,7 @@ export const PostsPage = () => {
     });
   };
 
-  const onHandleApply = (filteredTags) => {
-    setChecked(filteredTags);
+  const onHandleApply = filteredTags => {
     refetch({
       first: LOAD_LIST_ITEMS,
       tags: filteredTags.length > 0 ? filteredTags : tagsList.map(tag => tag.name),
@@ -52,7 +49,6 @@ export const PostsPage = () => {
               totalCount={totalCount}
               onEndReached={onEndReached}
               onHandleApply={onHandleApply}
-              checkedTags={checked}
             />
           )}
         </>

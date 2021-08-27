@@ -15,14 +15,7 @@ export const COMMENTS_LIST_QUERY = gql`
 
 export const ADD_COMMENT = gql`
   mutation AddComment($text: String!, $postId: ID) {
-    commentCreate(data: {
-      content: $text
-      posts: {
-        connect: {
-          id: $postId
-        }
-      }
-    }) {
+    commentCreate(data: { content: $text, posts: { connect: { id: $postId } } }) {
       id
       content
     }
